@@ -1,10 +1,25 @@
-import React from 'react'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+import HomePage from './pages/HomePage';
+
+
+
+import Header from './components/header/Header';
+
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl text-red-400">Main</h1>
-    </div>
+   <BrowserRouter>
+   <Header/>
+    <Routes>
+      <Route path='/' element={<HomePage/>}/>
+    </Routes>
+    <ToastContainer />
+   </BrowserRouter>
   );
 }
 
