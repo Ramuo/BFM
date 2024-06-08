@@ -1,11 +1,11 @@
 import Nav from './Nav';
 import Adv from "./Adv"
 
-const Header = () => {
+const Header = ({onSearchButtonClick}) => {
   return (
     <>
         <Adv/>
-        <Nav/>
+        <Nav onSearchButtonClick={onSearchButtonClick}/>
     </>
   )
 }

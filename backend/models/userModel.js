@@ -3,34 +3,56 @@ import bcrypt from 'bcryptjs';
 
 
 const userSchema = new mongoose.Schema({
-        name: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        password: {
-            type: String,
-            required: true,
-        },
-        avatar: {
-            // type: String,
-            public_id: String,
-            url: String,
-        },
-        isAdmin: {
-            type: Boolean,
-            required: true,
-            default: false,
-        },
-        resetPasswordToken: String,
-        resetPasswordExpire: Date,
+    name: {
+        type: String,
+        // required: true,
+        unique: true,
     },
-    { timestamps: true }
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: [
+            /^\S+@\S+\.\S+$/, 
+            "Veuillez utiliser une adresse E-mail valide"
+        ],
+    },
+    phone: {
+        type: String,
+    },
+    password: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function (value) {
+            const hasLowercase = /[a-z]/.test(value);
+            const hasUppercase = /[A-Z]/.test(value);
+            const hasDigit = /\d/.test(value);
+            const hasSymbol = /[@$!%*?&]/.test(value);
+            const isLengthValid = value.length >= 8;
+    
+            return (
+                hasLowercase && hasUppercase && hasDigit && hasSymbol && isLengthValid
+            );
+            } 
+        },
+    },
+    profilePhoto: {
+        // type: String,
+        public_id: String,
+        url: String,
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
+    },
+    bio: {
+        type: String,
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
+},{ timestamps: true }
 );
 
 //TO AUTHENTICATE USER PSW

@@ -16,11 +16,11 @@ const login = asyncHandler(async(req, res)=>{
         generateToken(res, user._id);
 
         res.status(200).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            isAdmin: user.isAdmin,
-            avatar: user.avatar.url
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          profilePhoto: user.profilePhoto
         })
     }else{
         res.status(401);
@@ -32,35 +32,44 @@ const login = asyncHandler(async(req, res)=>{
 //@route    POST /api/users/register
 //@access   Public
 const register = asyncHandler(async(req, res)=>{
-    const {name, email, password} = req.body;
+  const {name, email, password} = req.body;
 
-    const userExist = await User.findOne({email});
+  const userExist = await User.findOne({email});
 
-    if(userExist){
-        res.status(400);
-        throw new Error("L'utilistaur existe déjà");
-    };
+  if(userExist){
+      res.status(400);
+      throw new Error("L'utilistaur existe déjà");
+  };
 
-    const user = await User.create({
-        name,
-        email,
-        password,
+  const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@$!%#*?&]{8,}$/;
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({
+      message:
+        "Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre, un caractère spécial et au minimum 8 caractères",
     });
+  }
 
-    if(user){
-        generateToken(res, user._id);
-        
-        res.status(201).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            isAdmin: user.isAdmin,
-            avatar: user.avatar.url
-        });
-    }else{
-        res.status(400);
-        throw new Error("Information invalide");
-    };
+  const user = await User.create({
+      name,
+      email,
+      password,
+  });
+
+  if(user){
+      generateToken(res, user._id);
+      
+      res.status(201).json({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          profilePhoto: user.profilePhoto
+      });
+  }else{
+      res.status(400);
+      throw new Error("Information invalide");
+  };
 
 });
 

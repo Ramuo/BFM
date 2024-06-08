@@ -6,6 +6,7 @@ import {FaFacebook, FaInstagram, FaTiktok, FaTwitter} from 'react-icons/fa'
 function Footer({ SearchText }) {
   const navigation = useNavigate();
   const [searchText, setSearchText] = useState("");
+  
   const handleInputChange = (e) => {
     console.log(e);
     setSearchText(e.target.value);
@@ -13,6 +14,7 @@ function Footer({ SearchText }) {
 
   const handleSearch = () => {
     navigation(`/search/${searchText}`);
+
   };
 
   const categoriesRow1 = [
@@ -144,10 +146,9 @@ function Footer({ SearchText }) {
   ];
   return (
     <>
-      {/* Main 1 */}
-      <main className="bg-black p-4 md:hidden">
+      <div className="bg-black p-4 md:hidden">
         <hr className="pb-5" />
-        <section className="flex items-center p-2 mt-4 flex-col md:flex-row ">
+        <div className="flex items-center p-2 mt-4 flex-col md:flex-row">
           <input
             type="text"
             value={SearchText}
@@ -155,51 +156,49 @@ function Footer({ SearchText }) {
             onChange={handleInputChange}
           />
           <button
-            // onClick={handleSearch}
+            onClick={handleSearch}
             className="h-8 bg-white text-black px-2 rounded-r flex items-center font-bold">
             Search <span className="ml-1 font-bold text-2xl pb-1">&#8594;</span>
           </button>
-        </section>
-        <section className="bg-black w-full flex items-center justify-between text-white p-4">
-          <article className="grid grid-cols-1 md:grid-cols-7 pb-4">
+        </div>
+        <div className="bg-black w-full flex items-center justify-between text-white p-4">
+          <div className="grid grid-cols-1 md:grid-cols-7 pb-4">
             {categoriesRow1.map((category, index) => (
               <div key={index} className="border-b-3 border-white">
                 <span className="font-bold text-lg">{category.title}</span>
                 <div className="flex flex-col flex-wrap mt-2">
                   {category.items.map((item, i) => (
                     <NavLink
-                    key={i}
-                    to={`/${category.title.toLowerCase()}/${item.toLowerCase()}`}
-                    className="py-1 text-sm leading-none hover:underline"
-                    // exact
-                    >
+                      key={i}
+                      to={`/${category.title.toLowerCase()}/${item.toLowerCase()}`}
+                      className="py-1 text-sm leading-none hover:underline"
+                      exact>
                       {item}
                     </NavLink>
                   ))}
                 </div>
               </div>
             ))}
-          </article>
-          <article className="grid grid-cols-1 md:grid-cols-7 pb-4">
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-7 pb-4">
             {categoriesRow2.map((category, index) => (
               <div key={index} className="border-b-3 border-white">
                 <span className="font-bold text-lg">{category.title}</span>
                 <div className="flex flex-col flex-wrap mt-2">
                   {category.items.map((item, i) => (
                     <NavLink
-                    key={i}
-                    to={`/${category.title.toLowerCase()}/${item.toLowerCase()}`}
-                    className="py-1 text-sm leading-none hover:underline"
-                    //exact
-                    >
+                      key={i}
+                      to={`/${category.title.toLowerCase()}/${item.toLowerCase()}`}
+                      className="py-1 text-sm leading-none hover:underline"
+                      exact>
                       {item}
                     </NavLink>
                   ))}
                 </div>
               </div>
             ))}
-          </article>
-        </section>
+          </div>
+        </div>
         <div className="bg-black w-full pt-8 pb-8 px-5 flex flex-col items-center md:items-start text white border-t border-b border-gray-700">
           <div className=" w-full flex items-center justify-between flex-col md:flex-row">
             <div className="flex items-center">
@@ -214,10 +213,10 @@ function Footer({ SearchText }) {
               <NavLink
                 to="/Watch"
                 className="text-white text-[0.937rem] font-bold ml-0 md:ml-7">
-                Regarder
+                Watch
               </NavLink>
               <button className="border border-white rounded-xl px-4 py-2 ml-5 text-white hover:bg-gray-800">
-                Connexion
+                Log In
               </button>
             </div>
           </div>
@@ -230,15 +229,13 @@ function Footer({ SearchText }) {
           Rights
         </div>
         <div className="text-white text-sm pb-6 text-center">
-          Reserved. BFM Sans ™ & © 2016 Cable News Network.
+          Reserved. CNN Sans ™ & © 2016 Cable News Network.
         </div>
-      </main>
-      
-      {/* Main 2 */}
-      <main className="bg-black p-4 hidden md:block ">
+      </div>
+
+      <div className="bg-black p-4 hidden md:block ">
         <hr className="pb-5" />
-        {/* First section Main2 */}
-        <section className="flex items-center p-2 mt-4">
+        <div className="flex items-center p-2 mt-4">
           <input
             type="text"
             value={SearchText}
@@ -246,102 +243,114 @@ function Footer({ SearchText }) {
             onChange={handleInputChange}
           />
           <button
-            // onClick={handleSearch}
+            onClick={handleSearch}
             className="h-8 bg-white text-black px-2 rounded-r flex items-center font-bold">
             Search <span className="ml-1 font-bold text-2xl pb-1">&#8594;</span>
           </button>
-        </section>
-        {/* Second section Main 2 */}
-        <section className="bg-black text-white p-4">
-          <article className="grid grid-cols-7 pb-4">
+        </div>
+        <div className="bg-black text-white p-4">
+          <div className="grid grid-cols-7 pb-4">
             {categoriesRow1.map((category, index) => (
               <div key={index} className="border-b-3 border-white">
                 <span className="font-bold text-lg">{category.title}</span>
                 <div className="flex flex-col flex-wrap mt-2">
                   {category.items.map((item, i) => (
                     <NavLink
-                    key={i}
-                    to={`/${category.title.toLowerCase()}/${item.toLowerCase()}`}
-                    className="py-1 text-sm leading-none hover:underline"
-                    // exact
-                    >
+                      key={i}
+                      to={`/${category.title.toLowerCase()}/${item.toLowerCase()}`}
+                      className="py-1 text-sm leading-none hover:underline"
+                      exact>
                       {item}
                     </NavLink>
                   ))}
                 </div>
               </div>
             ))}
-          </article>
-          <article className="grid grid-cols-7 pb-4">
+          </div>
+          <div className="grid grid-cols-7 pb-4">
             {categoriesRow2.map((category, index) => (
               <div key={index} className="border-b-3 border-white">
                 <span className="font-bold text-lg">{category.title}</span>
                 <div className="flex flex-col flex-wrap mt-2">
                   {category.items.map((item, i) => (
                     <NavLink
-                    key={i}
-                    to={`/${category.title.toLowerCase()}/${item.toLowerCase()}`}
-                    className="py-1 text-sm leading-none hover:underline"
-                    //   exact
-                    >
+                      key={i}
+                      to={`/${category.title.toLowerCase()}/${item.toLowerCase()}`}
+                      className="py-1 text-sm leading-none hover:underline"
+                      exact>
                       {item}
                     </NavLink>
                   ))}
                 </div>
               </div>
             ))}
-          </article>
-        </section>
-        {/* Third section Main 2*/}
-        <section className="bg-black w-full pt-8 pb-8 px-5 flex flex-col items-start text white border-t border-b border-gray-700">
+          </div>
+        </div>
+        <div className="bg-black w-full pt-8 pb-8 px-5 flex flex-col items-start text white border-t border-b border-gray-700">
           <div className=" w-full flex items-center justify-between">
             <div className="flex items-center">
               <img
-                src={BFMTV_Logo}
+                src="images/Header/logo.png"
                 alt=""
                 className="w-auto h-8 mr-4"
               />
-              <div className="font-bold text-2xl text-white">France</div>
+              <div className="font-bold text-2xl text-white">US</div>
             </div>
             <div className="flex items-center">
               <NavLink
                 to="/Watch"
                 className="text-white text-[0.937rem] font-bold ml-7">
-                Regarder
+                Watch
               </NavLink>
               <NavLink
                 to="/Listen"
                 className="text-white text-[0.937rem] font-bold ml-7">
-                Écouter
+                Listen
               </NavLink>
               <NavLink
                 to="/live-tv"
                 className="text-white text-[0.937rem] font-bold ml-7">
-                Direct TV
+                Live TV
               </NavLink>
               <div className="border-r border-gray-500 w-1 h-6 mx-4"></div>\
               <div className="text-white text-[0.937rem] font-bold ">
-                Suivre BFM
+                Follow CNN
               </div>
               <NavLink
                 to="/facebook"
                 className="text-white text-[0.937rem] font-bold mx-4">
-                <FaFacebook className="h-full w-full"/>
+                <img
+                  src="images/Footer/Facebook.png"
+                  className="h-full w-full"
+                  alt=""
+                />
               </NavLink>
               <NavLink
                 to="/x"
                 className="text-white text-[0.937rem] font-bold mx-4">
-                <FaTwitter className="h-full w-full"/>
+                <img
+                  src="images/Footer/X.png"
+                  className="h-full w-full"
+                  alt=""
+                />
               </NavLink>
               <NavLink
                 to="/Instagram"
                 className="text-white text-[0.937rem] font-bold mx-4">
-                <FaInstagram className="h-full w-full"/>
+                <img
+                  src="images/Footer/Instagram.png"
+                  className="h-full w-full"
+                  alt=""
+                />
               </NavLink>
               <NavLink
                 to="/Tiktok"
                 className="text-white text-[0.937rem] font-bold mx-4">
-               <FaTiktok className="h-full w-full"/>
+                <img
+                  src="images/Footer/Tiktok.png"
+                  className="h-full w-full"
+                  alt=""
+                />
               </NavLink>
               <NavLink
                 to="/LinkedIn"
@@ -353,13 +362,12 @@ function Footer({ SearchText }) {
                 />
               </NavLink>
               <button className="border border-white rounded-xl px-4 py-2 ml-5 text-white hover:bg-gray-800">
-                Connexion
+                Log In
               </button>
             </div>
           </div>
-        </section>
-        {/* Fourth section Main 2 */}
-        <section className="text-white text-sm flex flex-wrap items-center justify-start w-full mt-4 ">
+        </div>
+        <div className="text-white text-sm flex flex-wrap items-center justify-start w-full mt-4 ">
           <NavLink to="/terms-of-use">Terms of Use</NavLink>
           <NavLink to="/privacy-policy" className="ml-4">
             Privacy Policy
@@ -382,17 +390,15 @@ function Footer({ SearchText }) {
           <NavLink to="/Transcripts" className="ml-4">
             Transcripts
           </NavLink>
-        </section>
-        {/* Fith Section Main 2 */}
-        <section className="text-white text-sm mt-4">
+        </div>
+        <div className="text-white text-sm mt-4">
           © 2024 Cable News Network. A Warner Bros. Discovery Company. All
           Rights
-        </section>
-        {/* Sixth Section Main 2 */}
-        <section className="text-white text-sm pb-6">
-          Reserved. BFM Sans ™ & © 2016 Cable News Network.
-        </section>
-      </main>
+        </div>
+        <div className="text-white text-sm pb-6">
+          Reserved. CNN Sans ™ & © 2016 Cable News Network.
+        </div>
+      </div>
     </>
   );
 }
